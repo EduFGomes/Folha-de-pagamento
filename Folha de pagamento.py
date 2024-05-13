@@ -16,22 +16,18 @@ def menu():
 
 def inserir():
     matricula = int(input('Digite o número de matrícula: '))
-    if matricula in funcionarios.keys():
+    while matricula in funcionarios.keys():
         print('Matrícula já existente. Insira outro número.')
-        inserir()
-
+        matricula = int(input('Digite o número de matrícula: '))
     nome = input('Digite o nome do funcionário: ')
-
     cod_func = int(input('Digite o código da função do funcionário: '))
     while cod_func != 101 and cod_func != 102:
         print('O código inserido é invalido. Tente novamente.')
         cod_func = int(input('Digite o código da função do funcionário: '))
-
     num_falta = int(input('Digite a quantidade de faltas do funcionário no mês: '))
     while num_falta > 30:
         print('Número de faltas excedeu o máximo permitido. Tente novamente.')
         num_falta = int(input('Digite a quantidade de faltas do funcionário no mês: '))
-
     if cod_func == 101:
         sal_bruto = 1500
         vol_vendas = float(input('Digite o valor do volume de vendas do funcionário: '))
@@ -41,20 +37,21 @@ def inserir():
         while sal_bruto < 2150 or sal_bruto > 6950:
             print('Valor inválido. Tente novamente.')
             sal_bruto = float(input('Digite o salário do funcionário: '))
-    
     sal_bruto = sal_bruto - (sal_bruto/30 * num_falta)
-
     if sal_bruto <= 2259.20:
         sal_liq = sal_bruto
     elif 2259.20 < sal_bruto <= 2828.65:
         sal_liq = sal_bruto - (sal_bruto * 0.075)
+        imposto = 7.5
     elif 2828.65 < sal_bruto <= 3751.05:
         sal_liq = sal_bruto - (sal_bruto * 0.15)
+        imposto = 15
     elif 3751.05 < sal_bruto <= 4664.68:
         sal_liq = sal_bruto - (sal_bruto * 0.225)
+        imposto = 22.5
     elif 4664.68 < sal_bruto:
         sal_liq = sal_bruto - (sal_bruto * 0.275)
-
+        imposto = 27.5
     funcionarios[matricula] = [nome, cod_func, num_falta, sal_bruto, sal_liq]
 
     print('-' * 50)
@@ -89,4 +86,4 @@ def remover():
         remover()
 
 funcionarios = {}
-menu()
+menu() 
