@@ -5,6 +5,7 @@ def menu():
     print('Digite 1 para inserir um funcionário;')
     print('Digite 2 para remover um funcionário;')
     print('Digite 3 para mostrar a folha de pagamento de um funcionário;')
+    print('Digite 4 para mostrar o relatório de todos os funcionários;')
     print('Digite 10 para finalizar o programa.')
 
     resp = int(input())
@@ -14,6 +15,8 @@ def menu():
         remover()
     elif resp == 3:
         folha_de_pag()
+    elif resp == 4:
+        relatorio()
     elif resp == 10:
         print('Obrigado por acessar o programa!')
 
@@ -89,13 +92,13 @@ def folha_de_pag():
         
     if matricula in funcionarios.keys():
         print('-'*50)
-        print(f'Número de matrícula: {matricula}')
-        print(f'Nome do funcionário: {funcionarios[matricula][0]}')
+        print(f'Número de matrícula:   {matricula}')
+        print(f'Nome do funcionário:   {funcionarios[matricula][0]}')
         print(f'Código do funcionário: {funcionarios[matricula][1]}')
-        print(f'Número de faltas: {funcionarios[matricula][2]}')
-        print(f'Salário bruto: {funcionarios[matricula][3]}')
-        print(f'Imposto: {funcionarios[matricula][4]}%')
-        print(f'Salário líquido: {funcionarios[matricula][5]}')
+        print(f'Número de faltas:      {funcionarios[matricula][2]}')
+        print(f'Salário bruto:         {funcionarios[matricula][3]}')
+        print(f'Imposto:               {funcionarios[matricula][4]} %')
+        print(f'Salário líquido:       {funcionarios[matricula][5]}')
         print('-'*50)
 
         resp = 'mostrar a folha de pagamento de mais'
@@ -124,5 +127,13 @@ def voltar(resp, func):
     elif resp == 2:
         menu()
 
-funcionarios = {}
+def relatorio():
+    for matricula, lista in funcionarios.items():
+        print(f'Número de Matrícula: {matricula}')
+        print(f'Nome: {lista[0]}')
+        print(f'Códigoda função: {lista[1]}')
+        print(f'Salário bruto: {lista[3]}')
+        print(f'Salário líquido: {lista[5]}')
+
+funcionarios = {1: ['João', 101, 0, 1000.00, 0, 1590.00], 39: ['Jorge', 101, 0, 1000.00, 0, 1590.00]}
 menu() 
