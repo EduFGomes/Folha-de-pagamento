@@ -58,21 +58,9 @@ def inserir():
         imposto = 27.5
     funcionarios[matricula] = [nome.title(), cod_func, num_falta, sal_bruto, imposto, sal_liq]
 
-    print('-' * 50)
-    print('Digite 1 se você deseja inserir mais algum funcionário;')
-    print('Digite 2 se você deseja voltar ao menu;')
-    print('Digite 3 se você deseja finalizar o programa.')
-    resp = int(input())
-    while resp < 1 or resp > 3:
-        print('-' * 50)
-        print('Digite 1 se você deseja inserir mais algum funcionário;')
-        print('Digite 2 se você deseja voltar ao menu;')
-        print('Digite 3 se você deseja finalizar o programa.')
-        resp = int(input())
-    if resp == 1:
-        inserir()
-    elif resp == 2:
-        menu()
+    resp = 'inserir mais'
+    func = 1
+    voltar(resp, func)
 
 def remover():
     matricula = int(input('Digite o número da matrícula do funcionário que deseja remover: '))
@@ -88,11 +76,16 @@ def remover():
     else:
         print("Esse funcionário não existe.")
         remover()
+    
+    resp = 'remover mais'
+    func = 2
+    voltar(resp, func)
 
 def folha_de_pag():
     matricula = int(input('Digite o número de matrícula do funcionário: '))
     while matricula not in funcionarios.keys():
         print('Número de matrícula inválido.')
+        matricula = int(input('Digite o número de matrícula do funcionário: '))
         
     if matricula in funcionarios.keys():
         print('-'*50)
@@ -105,22 +98,31 @@ def folha_de_pag():
         print(f'Salário líquido: {funcionarios[matricula][5]}')
         print('-'*50)
 
+        resp = 'mostrar a folha de pagamento de mais'
+        func = 3
+        voltar(resp, func)
+
+def voltar(resp, func):
+    print('-' * 50)
+    print(f'Digite 1 se você deseja {resp} algum funcionário;')
+    print('Digite 2 se você deseja voltar ao menu;')
+    print('Digite 3 se você deseja finalizar o programa.')
+    resp = int(input())
+    while resp < 1 or resp > 3:
         print('-' * 50)
-        print('Digite 1 se você deseja mostrar a folha de pagamento de mais algum funcionário;')
+        print(f'Digite 1 se você deseja {resp} algum funcionário;')
         print('Digite 2 se você deseja voltar ao menu;')
         print('Digite 3 se você deseja finalizar o programa.')
         resp = int(input())
-        while resp < 1 or resp > 3:
-            print('-' * 50)
-            print('Digite 1 se você deseja mostrar a folha de pagamento de mais algum funcionário;')
-            print('Digite 2 se você deseja voltar ao menu;')
-            print('Digite 3 se você deseja finalizar o programa.')
-            resp = int(input())
-        if resp == 1:
+    if resp == 1:
+        if func == 1:
+            inserir()
+        elif func == 2:
+            remover()
+        elif func == 3:
             folha_de_pag()
-        elif resp == 2:
-            menu()
-
+    elif resp == 2:
+        menu()
 
 funcionarios = {}
 menu() 
