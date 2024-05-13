@@ -1,12 +1,14 @@
 def menu():
     print('-' * 50)
     print('Bem vindo ao sistema de folha de pagamento da Marketing é Tudo!')
-    print('Para utilizar todas as funcionalidades é necessário acessar pelo menu abaixo:')
+    print('')
+    print('Para utilizar todas as funcionalidades, acesse o menu abaixo:')
     print('Digite 1 para inserir um funcionário;')
     print('Digite 2 para remover um funcionário;')
     print('Digite 3 para mostrar a folha de pagamento de um funcionário;')
     print('Digite 4 para mostrar o relatório de todos os funcionários;')
     print('Digite 10 para finalizar o programa.')
+    print('')
 
     resp = int(input())
     if resp == 1:
@@ -21,6 +23,7 @@ def menu():
         print('Obrigado por acessar o programa!')
 
 def inserir():
+    print('1 - INSERIR FUNCIONÁRIO')
     matricula = int(input('Digite o número de matrícula: '))
     while matricula in funcionarios.keys():
         print('Matrícula já existente. Insira outro número.')
@@ -60,31 +63,37 @@ def inserir():
         sal_liq = sal_bruto - (sal_bruto * 0.275)
         imposto = 27.5
     funcionarios[matricula] = [nome.title(), cod_func, num_falta, sal_bruto, imposto, sal_liq]
+    print('')
+    print('FUNCIONÁRIO INSERIDO.')
+    print('')
 
     resp = 'inserir mais'
     func = 1
     voltar(resp, func)
 
 def remover():
+    print('2 - REMOVER FUNCIONÁRIO')
     matricula = int(input('Digite o número da matrícula do funcionário que deseja remover: '))
     if matricula in funcionarios.keys():
         print(funcionarios[matricula][0])
         nome = input('Para confirmar, digite o nome do funcionário completo: ')
         if nome.title() in funcionarios[matricula][0]:
             func_remov = funcionarios.pop(matricula)
-            print(f'O funcionário {func_remov[0]} foi removido do sistema.')
+            print(f'O FUNCIONÁRIO {func_remov[0].upper()} FOI REMOVIDO.')
         else:
             print('O nome do funcionário foi digitado incorretamente.')
             remover()
     else:
         print("Esse funcionário não existe.")
         remover()
+    print('')
     
     resp = 'remover mais'
     func = 2
     voltar(resp, func)
 
 def folha_de_pag():
+    print('3 - FOLHA DE PAGAMENTO')
     matricula = int(input('Digite o número de matrícula do funcionário: '))
     while matricula not in funcionarios.keys():
         print('Número de matrícula inválido.')
@@ -100,6 +109,7 @@ def folha_de_pag():
         print(f'Imposto:               {funcionarios[matricula][4]} %')
         print(f'Salário líquido:       {funcionarios[matricula][5]}')
         print('-'*50)
+        print('')
 
         resp = 'mostrar a folha de pagamento de mais'
         func = 3
@@ -126,6 +136,7 @@ def voltar(resp, func):
             folha_de_pag()
     elif resp == 2:
         menu()
+    print('')
 
 def relatorio():
     for matricula, lista in funcionarios.items():
@@ -134,6 +145,7 @@ def relatorio():
         print(f'Códigoda função: {lista[1]}')
         print(f'Salário bruto: {lista[3]}')
         print(f'Salário líquido: {lista[5]}')
+        print('')
 
 funcionarios = {1: ['João', 101, 0, 1000.00, 0, 1590.00], 39: ['Jorge', 101, 0, 1000.00, 0, 1590.00]}
 menu() 
