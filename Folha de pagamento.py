@@ -67,9 +67,9 @@ def inserir():
     print('FUNCIONÁRIO INSERIDO.')
     print('')
 
-    resp = 'inserir mais'
+    frase = 'inserir mais algum funcionário'
     func = 1
-    voltar(resp, func)
+    voltar(frase, func)
 
 def remover():
     print('2 - REMOVER FUNCIONÁRIO')
@@ -88,9 +88,9 @@ def remover():
         remover()
     print('')
     
-    resp = 'remover mais'
+    frase = 'remover mais algum funcionário'
     func = 2
-    voltar(resp, func)
+    voltar(frase, func)
 
 def folha_de_pag():
     print('3 - FOLHA DE PAGAMENTO')
@@ -111,19 +111,32 @@ def folha_de_pag():
         print('-'*50)
         print('')
 
-        resp = 'mostrar a folha de pagamento de mais'
-        func = 3
-        voltar(resp, func)
+    frase = 'mostrar a folha de pagamento de mais algum funcionário'
+    func = 3
+    voltar(frase, func)
 
-def voltar(resp, func):
+def relatorio():
+    for matricula, lista in funcionarios.items():
+        print(f'Número de Matrícula: {matricula}')
+        print(f'Nome: {lista[0]}')
+        print(f'Códigoda função: {lista[1]}')
+        print(f'Salário bruto: {lista[3]}')
+        print(f'Salário líquido: {lista[5]}')
+        print('')
+
+    frase = 'realizar o relatório novamente'
+    func = 4
+    voltar(frase, func)
+
+def voltar(frase, func):
     print('-' * 50)
-    print(f'Digite 1 se você deseja {resp} algum funcionário;')
+    print(f'Digite 1 se você deseja {frase};')
     print('Digite 2 se você deseja voltar ao menu;')
     print('Digite 3 se você deseja finalizar o programa.')
     resp = int(input())
     while resp < 1 or resp > 3:
         print('-' * 50)
-        print(f'Digite 1 se você deseja {resp} algum funcionário;')
+        print(f'Digite 1 se você deseja {frase} algum funcionário;')
         print('Digite 2 se você deseja voltar ao menu;')
         print('Digite 3 se você deseja finalizar o programa.')
         resp = int(input())
@@ -134,18 +147,11 @@ def voltar(resp, func):
             remover()
         elif func == 3:
             folha_de_pag()
+        elif func == 4:
+            relatorio()
     elif resp == 2:
         menu()
-    print('')
-
-def relatorio():
-    for matricula, lista in funcionarios.items():
-        print(f'Número de Matrícula: {matricula}')
-        print(f'Nome: {lista[0]}')
-        print(f'Códigoda função: {lista[1]}')
-        print(f'Salário bruto: {lista[3]}')
-        print(f'Salário líquido: {lista[5]}')
-        print('')
+    print('Obrigado por acessar o programa!')
 
 funcionarios = {1: ['João', 101, 0, 1000.00, 0, 1590.00], 39: ['Jorge', 101, 0, 1000.00, 0, 1590.00]}
 menu() 
