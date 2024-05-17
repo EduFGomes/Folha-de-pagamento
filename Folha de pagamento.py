@@ -23,7 +23,7 @@ def menu():
         print('Obrigado por acessar o programa!')
 
 def inserir():
-    print('-' * 50)
+    print('')
     print('1 - INSERIR FUNCIONÁRIO')
     print('-' * 50)
     matricula = int(input('Digite o número de matrícula: '))
@@ -74,7 +74,7 @@ def inserir():
     voltar(frase, func)
 
 def remover():
-    print('-' * 50)
+    print('')
     print('2 - REMOVER FUNCIONÁRIO')
     print('-' * 50)
     print('MATRÍCULAS DISPONÍVEIS PARA REMOÇÃO: ')
@@ -85,10 +85,11 @@ def remover():
     if matricula in funcionarios.keys():
         print(funcionarios[matricula][0])
         nome = input('Para confirmar, digite o nome do funcionário completo: ')
-        if nome.title() in funcionarios[matricula][0]:
+        if nome.title() == funcionarios[matricula][0]:
             func_remov = funcionarios.pop(matricula)
             print(f'O FUNCIONÁRIO {func_remov[0].upper()} FOI REMOVIDO.')
         else:
+            print('-' * 50)    
             print('O nome do funcionário foi digitado incorretamente.')
             remover()
     else:
@@ -101,7 +102,7 @@ def remover():
     voltar(frase, func)
 
 def folha_de_pag():
-    print('-' * 50)
+    print('')
     print('3 - FOLHA DE PAGAMENTO')
     print('-' * 50)
     matricula = int(input('Digite o número de matrícula do funcionário: '))
@@ -118,7 +119,6 @@ def folha_de_pag():
         print(f'Salário bruto:         {funcionarios[matricula][3]}')
         print(f'Imposto:               {funcionarios[matricula][4]}%')
         print(f'Salário líquido:       {funcionarios[matricula][5]}')
-        print('-'*50)
         print('')
 
     frase = 'mostrar a folha de pagamento de mais algum funcionário'
@@ -126,7 +126,7 @@ def folha_de_pag():
     voltar(frase, func)
 
 def relatorio():
-    print('-' * 50)
+    print('')
     print('4 - RELATÓRIO GERAL')
     print('-' * 50)
     for matricula, lista in funcionarios.items():
@@ -142,13 +142,11 @@ def relatorio():
     voltar(frase, func)
 
 def voltar(frase, func):
-    print('-' * 50)
     print(f'Digite 1 se você deseja {frase};')
     print('Digite 2 se você deseja voltar ao menu;')
     print('Digite 3 se você deseja finalizar o programa.')
     resp = int(input())
     while resp < 1 or resp > 3:
-        print('-' * 50)
         print(f'Digite 1 se você deseja {frase} algum funcionário;')
         print('Digite 2 se você deseja voltar ao menu;')
         print('Digite 3 se você deseja finalizar o programa.')
