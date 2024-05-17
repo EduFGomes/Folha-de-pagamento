@@ -7,7 +7,7 @@ def menu():
     print('Digite 2 para remover um funcionário;')
     print('Digite 3 para mostrar a folha de pagamento de um funcionário;')
     print('Digite 4 para mostrar o relatório de todos os funcionários;')
-    print('Digite 10 para finalizar o programa.')
+    print('Digite outro número para finalizar o programa.')
     print('')
 
     resp = int(input())
@@ -19,8 +19,6 @@ def menu():
         folha_de_pag()
     elif resp == 4:
         relatorio()
-    elif resp == 10:
-        print('Obrigado por acessar o programa!')
 
 def inserir():
     print('')
@@ -105,6 +103,10 @@ def folha_de_pag():
     print('')
     print('3 - FOLHA DE PAGAMENTO')
     print('-' * 50)
+    print('MATRÍCULAS DISPONÍVEIS PARA APRESENTAÇÃO: ')
+    for num, nome in funcionarios.items():
+        print(f'{nome[0]}: {num}')
+    print('-' * 50)
     matricula = int(input('Digite o número de matrícula do funcionário: '))
     while matricula not in funcionarios.keys():
         print('Número de matrícula inválido.')
@@ -162,7 +164,7 @@ def voltar(frase, func):
             relatorio()
     elif resp == 2:
         menu()
-    print('Obrigado por acessar o programa!')
 
 funcionarios = {1: ['João', 101, 0, 1000.00, 0, 1590.00], 39: ['Jorge', 101, 0, 1000.00, 0, 1590.00]}
 menu() 
+print('Obrigado por acessar o programa!')
