@@ -23,7 +23,9 @@ def menu():
         print('Obrigado por acessar o programa!')
 
 def inserir():
+    print('-' * 50)
     print('1 - INSERIR FUNCIONÁRIO')
+    print('-' * 50)
     matricula = int(input('Digite o número de matrícula: '))
     while matricula in funcionarios.keys():
         print('Matrícula já existente. Insira outro número.')
@@ -72,7 +74,13 @@ def inserir():
     voltar(frase, func)
 
 def remover():
+    print('-' * 50)
     print('2 - REMOVER FUNCIONÁRIO')
+    print('-' * 50)
+    print('MATRÍCULAS DISPONÍVEIS PARA REMOÇÃO: ')
+    for num, nome in funcionarios.items():
+        print(f'{nome[0]}: {num}')
+    print('-' * 50)
     matricula = int(input('Digite o número da matrícula do funcionário que deseja remover: '))
     if matricula in funcionarios.keys():
         print(funcionarios[matricula][0])
@@ -93,7 +101,9 @@ def remover():
     voltar(frase, func)
 
 def folha_de_pag():
+    print('-' * 50)
     print('3 - FOLHA DE PAGAMENTO')
+    print('-' * 50)
     matricula = int(input('Digite o número de matrícula do funcionário: '))
     while matricula not in funcionarios.keys():
         print('Número de matrícula inválido.')
@@ -106,7 +116,7 @@ def folha_de_pag():
         print(f'Código do funcionário: {funcionarios[matricula][1]}')
         print(f'Número de faltas:      {funcionarios[matricula][2]}')
         print(f'Salário bruto:         {funcionarios[matricula][3]}')
-        print(f'Imposto:               {funcionarios[matricula][4]} %')
+        print(f'Imposto:               {funcionarios[matricula][4]}%')
         print(f'Salário líquido:       {funcionarios[matricula][5]}')
         print('-'*50)
         print('')
@@ -116,6 +126,9 @@ def folha_de_pag():
     voltar(frase, func)
 
 def relatorio():
+    print('-' * 50)
+    print('4 - RELATÓRIO GERAL')
+    print('-' * 50)
     for matricula, lista in funcionarios.items():
         print(f'Número de Matrícula: {matricula}')
         print(f'Nome: {lista[0]}')
