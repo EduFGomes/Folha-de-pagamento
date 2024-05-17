@@ -146,12 +146,12 @@ def relatorio():
 def voltar(frase, func):
     print(f'Digite 1 se você deseja {frase};')
     print('Digite 2 se você deseja voltar ao menu;')
-    print('Digite 3 se você deseja finalizar o programa.')
+    print('Digite outro número se você deseja finalizar o programa.')
     resp = int(input())
-    while resp < 1 or resp > 3:
+    while resp != 1 and resp != 2:
         print(f'Digite 1 se você deseja {frase} algum funcionário;')
         print('Digite 2 se você deseja voltar ao menu;')
-        print('Digite 3 se você deseja finalizar o programa.')
+        print('Digite outro número se você deseja finalizar o programa.')
         resp = int(input())
     if resp == 1:
         if func == 1:
