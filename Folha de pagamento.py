@@ -1,18 +1,15 @@
 def menu():
-    print(f'-' * 50)
-    print('Bem vindo ao sistema de folha de pagamento da Marketing é Tudo!')
-    print(f'-' * 50)
+    print('')
     print('Digite o número da opção desejada:')
-    print(f'-' * 50)
+    print('-' * 50)
     print('1 - INSERIR FUNCIONÁRIO;')
     print('2 - REMOVER FUNCIONÁRIO;')
     print('3 - FOLHA DE PAGAMENTO DE UM FUNCIONÁRIO;')
     print('4 - RELATÓRIO DE TODOS OS FUNCIONÁRIOS;')
-    print('5 - MOSTRAR FUNCIONÁRIO COM MAIOR SALÁRIO ;')
+    print('5 - MOSTRAR FUNCIONÁRIO COM MAIOR SALÁRIO;')
     print('6 - MOSTRAR O FUNCIONÁRIO COM MAIS FALTAS;')
     print('OUTRO NÚMERO PARA FINALIZAR O PROGRAMA.')
-    print(f'-' * 50)
-    print()
+    print('-' * 50)
 
     resp = int(input())
     if resp == 1:
@@ -84,7 +81,7 @@ def inserir():
     print('FUNCIONÁRIO INSERIDO.')
     print('')
 
-    frase = 'inserir mais algum funcionário'
+    frase = 'INSERIR FUNCIONÁRIO NOVAMENTE'
     func = 1
     voltar(frase, func)
 
@@ -98,21 +95,25 @@ def remover():
     print('-' * 50)
     matricula = int(input('Digite o número da matrícula do funcionário que deseja remover: '))
     if matricula in funcionarios.keys():
-        print(funcionarios[matricula][0])
+        print('')
+        print(f'FUNCIONÁRIO SELECIONADO: {funcionarios[matricula][0]}')
+        print('')
         nome = input('Para confirmar, digite o primeiro nome do funcionário: ')
         if nome.title() == funcionarios[matricula][0]:
             func_remov = funcionarios.pop(matricula)
+            print('')
             print(f'O FUNCIONÁRIO {func_remov[0].upper()} FOI REMOVIDO.')
         else:
-            print('-' * 50)    
+            print('')    
             print('O nome do funcionário foi digitado incorretamente.')
             remover()
     else:
+        print('')
         print("Esse funcionário não existe.")
         remover()
     print('')
     
-    frase = 'remover mais algum funcionário'
+    frase = 'REMOVER FUNCIONÁRIO NOVAMENTE'
     func = 2
     voltar(frase, func)
 
@@ -141,7 +142,7 @@ def folha_de_pag():
         print(f'Salário líquido:       {funcionarios[matricula][6]}')
         print('')
 
-    frase = 'mostrar a folha de pagamento de mais algum funcionário'
+    frase = 'FOLHA DE PAGAMENTO NOVAMENTE'
     func = 3
     voltar(frase, func)
 
@@ -151,61 +152,73 @@ def relatorio():
     print('-' * 50)
     for matricula, lista in funcionarios.items():
         print(f'Número de Matrícula: {matricula}')
-        print(f'Nome: {lista[0]}')
-        print(f'Códigoda função: {lista[1]}')
-        print(f'Salário bruto: {lista[4]}')
-        print(f'Salário líquido: {lista[6]}')
+        print(f'Nome:                {lista[0]}')
+        print(f'Códigoda função:     {lista[1]}')
+        print(f'Salário bruto:       {lista[4]}')
+        print(f'Salário líquido:     {lista[6]}')
         print('')
 
-    frase = 'realizar o relatório novamente'
+    frase = 'RELATÓRIO GERAL NOVAMENTE'
     func = 4
     voltar(frase, func)
 
 def maiorsal():
+    listaMS = {}
     maior_s = 0
     for i in funcionarios.keys():
-        if funcionarios[i][6] > maior_s:
-            maior_s = funcionarios[i][6]
-            matricula = funcionarios[i]
+        aux = funcionarios[i]
+        if aux[6] > maior_s:
+            listaMS = {}
+            listaMS[i] = [aux[0], aux[1], aux[4], aux[5], aux[6]]
+            maior_s = aux[6]
+        elif aux[6] == maior_s:
+            listaMS[i] = [aux[0],aux[1], aux[4], aux[5], aux[6]]
     print('MAIOR SALÁRIO:')
-    print(f'Número de matrícula: {matricula}')
-    print(f'Nome do funcionário: {matricula[0]}')
-    print(f'Código do funcionário: {matricula[1]}')
-    print(f'Salário bruto: {matricula[4]}')
-    print(f'Imposto: {matricula[5]}%')
-    print(f'Salário líquido: {matricula[6]}')
-    
-    frase = 'mostrar o funcionário com maior salário novamente'
+    for matricula, lista in listaMS.items():
+        print(f'-'*50)
+        print(f'Número de matrícula:   {matricula}')
+        print(f'Nome do funcionário:   {lista[0]}')
+        print(f'Código do funcionário: {lista[1]}')
+        print(f'Salário bruto:         {lista[2]}')
+        print(f'Imposto:               {lista[3]}%')
+        print(f'Salário líquido:       {lista[4]}')
+    print('')
+
+    frase = 'MAIOR SALÁRIO NOVAMENTE'
     func = 5
     voltar(frase, func)
 
 def maisfaltas():
+    listaMF = {}
     mais_f = 0
     for i in funcionarios.keys():
-        if funcionarios[i][2] > mais_f:
+        aux = funcionarios[i]
+        if aux[2] > mais_f:
+            listaMF = {}
+            listaMF[i] = [aux[0], aux[1], aux[2], aux[3]]
             mais_f = funcionarios[i][2]
-            matricula = funcionarios[i]
-    print('MAIOR NÚMERO DE FALTAS:')     
-    print(f'Número de matrícula: {matricula}')
-    print(f'Nome do funcionário: {matricula[0]}')
-    print(f'Código do funcionário: {matricula[1]}')
-    print(f'Número de faltas: {matricula[2]}')
-    print(f'Desconto das faltas: {matricula[3]}')
+        elif aux[2] == mais_f:
+            listaMF[i] = [aux[0], aux[1], aux[2], aux[3]]
+    print('MAIOR NÚMERO DE FALTAS:')
+    for matricula, lista in listaMF.items():
+        print('-'*50)
+        print(f'Número de matrícula:   {matricula}')
+        print(f'Nome do funcionário:   {lista[0]}')
+        print(f'Código do funcionário: {lista[1]}')
+        print(f'Número de faltas:      {lista[2]}')
+        print(f'Desconto das faltas:   {lista[3]}')
+    print('')
     
-    frase = 'mostrar o funcionário com maior número de faltas novamente'
+    frase = 'MAIOR NÚMERO DE FALTAS NOVAMENTE'
     func = 6
     voltar(frase, func)
 
 def voltar(frase, func):
-    print(f'Digite 1 se você deseja {frase};')
-    print('Digite 2 se você deseja voltar ao menu;')
-    print('Digite outro número se você deseja finalizar o programa.')
+    print(f'1 - {frase};')
+    print('2 - VOLTAR AO MENU;')
+    print('OUTRO NÚMERO PARA FINALIZAR O PROGRAMA.')
+    print('-'*50)
     resp = int(input())
-    while resp != 1 and resp != 2:
-        print(f'Digite 1 se você deseja {frase} algum funcionário;')
-        print('Digite 2 se você deseja voltar ao menu;')
-        print('Digite outro número se você deseja finalizar o programa.')
-        resp = int(input())
     if resp == 1:
         if func == 1:
             inserir()
@@ -218,6 +231,7 @@ def voltar(frase, func):
     elif resp == 2:
         menu()
 
-funcionarios = {1: ['João', 101, 0, 0, 1000.00, 0, 1591.00], 39: ['Jorge', 101, 0, 0, 1000.00, 0, 1590.00]}
+funcionarios = {1: ['João', 101, 0, 0, 1590.00, 0, 1590.00], 2: ['Jorge', 101, 1, 50, 1540.00, 0, 1540.00]}
+print('Bem vindo ao sistema de folha de pagamento da Marketing é Tudo!')
 menu() 
 print('Obrigado por acessar o programa!')
