@@ -7,6 +7,8 @@ def menu():
     print('Digite 2 para remover um funcionário;')
     print('Digite 3 para mostrar a folha de pagamento de um funcionário;')
     print('Digite 4 para mostrar o relatório de todos os funcionários;')
+    print('Digite 5 para mostrar o funcionário com maior salário ;')
+    print('Digite 6 para mostrar o funcionário com mais faltas;')
     print('Digite outro número para finalizar o programa.')
     print('')
 
@@ -19,6 +21,11 @@ def menu():
         folha_de_pag()
     elif resp == 4:
         relatorio()
+    elif resp == 5:
+        maiorsal()
+    elif resp == 6:
+        maisfaltas()
+
 
 def inserir():
     print('')
@@ -143,6 +150,34 @@ def relatorio():
     func = 4
     voltar(frase, func)
 
+def maiorsal():
+    maior_s = 0
+    for i in funcionarios.keys():
+        if funcionarios[i][5] > maior_s:
+            maior_s = funcionarios[i][5]
+            matricula = funcionarios[i]
+    print('funcionário com o maior salário:')
+    print(f'Número de matrícula: {matricula}')
+    print(f'Nome do funcionário: {matricula[0]}')
+    print(f'Código do funcionário: {matricula[1]}')
+    print(f'Salário bruto: {matricula[3]}')
+    print(f'Imposto: {matricula[4]}%')
+    print(f'Salário líquido: {matricula[5]}')
+
+def maisfaltas():
+    mais_f = 0
+    for i in funcionarios.keys():
+        if funcionarios[i][2] > mais_f:
+            mais_f = funcionarios[i][2]
+            desconto = (funcionarios[i][3] / 30) * funcionarios[i][2]
+            matricula = funcionarios[i]
+    print('Funcionário com mais faltas:')     
+    print(f'Número de matrícula: {matricula}')
+    print(f'Nome do funcionário: {matricula[0]}')
+    print(f'Código do funcionário: {matricula[1]}')
+    print(f'Número de faltas: {matricula[2]}')
+    print(f'Desconto no salário: {desconto}')
+
 def voltar(frase, func):
     print(f'Digite 1 se você deseja {frase};')
     print('Digite 2 se você deseja voltar ao menu;')
@@ -162,8 +197,8 @@ def voltar(frase, func):
             folha_de_pag()
         elif func == 4:
             relatorio()
-    elif resp == 2:
-        menu()
+        elif resp == 2:
+            menu()
 
 funcionarios = {1: ['João', 101, 0, 1000.00, 0, 1590.00], 39: ['Jorge', 101, 0, 1000.00, 0, 1590.00]}
 menu() 
