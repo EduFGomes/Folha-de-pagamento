@@ -163,25 +163,24 @@ def relatorio():
     voltar(frase, func)
 
 def maiorsal():
-    listaMS = {}
+    listaMS = []
     maior_s = 0
     for i in funcionarios.keys():
-        aux = funcionarios[i]
-        if aux[6] > maior_s:
-            listaMS = {}
-            listaMS[i] = [aux[0], aux[1], aux[4], aux[5], aux[6]]
-            maior_s = aux[6]
-        elif aux[6] == maior_s:
-            listaMS[i] = [aux[0],aux[1], aux[4], aux[5], aux[6]]
+        if funcionarios[i][6] > maior_s:
+            listaMS = []
+            listaMS.append(i)
+            maior_s = funcionarios[i][6]
+        elif funcionarios[i][6] == maior_s:
+            listaMS.append(i)
     print('MAIOR SALÁRIO:')
-    for matricula, lista in listaMS.items():
+    for i in listaMS:
         print(f'-'*50)
-        print(f'Número de matrícula:   {matricula}')
-        print(f'Nome do funcionário:   {lista[0]}')
-        print(f'Código do funcionário: {lista[1]}')
-        print(f'Salário bruto:         {lista[2]}')
-        print(f'Imposto:               {lista[3]}%')
-        print(f'Salário líquido:       {lista[4]}')
+        print(f'Número de matrícula:   {i}')
+        print(f'Nome do funcionário:   {funcionarios[i][0]}')
+        print(f'Código do funcionário: {funcionarios[i][1]}')
+        print(f'Salário bruto:         {funcionarios[i][4]}')
+        print(f'Imposto:               {funcionarios[i][5]}%')
+        print(f'Salário líquido:       {funcionarios[i][6]}')
     print('')
 
     frase = 'MAIOR SALÁRIO NOVAMENTE'
@@ -189,24 +188,23 @@ def maiorsal():
     voltar(frase, func)
 
 def maisfaltas():
-    listaMF = {}
+    listaMF = []
     mais_f = 0
     for i in funcionarios.keys():
-        aux = funcionarios[i]
-        if aux[2] > mais_f:
-            listaMF = {}
-            listaMF[i] = [aux[0], aux[1], aux[2], aux[3]]
+        if funcionarios[i][2] > mais_f:
+            listaMF = []
+            listaMF.append(i)
             mais_f = funcionarios[i][2]
-        elif aux[2] == mais_f:
-            listaMF[i] = [aux[0], aux[1], aux[2], aux[3]]
+        elif funcionarios[i][2] == mais_f:
+            listaMF.append(i)
     print('MAIOR NÚMERO DE FALTAS:')
-    for matricula, lista in listaMF.items():
+    for i in listaMF:
         print('-'*50)
-        print(f'Número de matrícula:   {matricula}')
-        print(f'Nome do funcionário:   {lista[0]}')
-        print(f'Código do funcionário: {lista[1]}')
-        print(f'Número de faltas:      {lista[2]}')
-        print(f'Desconto das faltas:   {lista[3]}')
+        print(f'Número de matrícula:   {i}')
+        print(f'Nome do funcionário:   {funcionarios[i][0]}')
+        print(f'Código do funcionário: {funcionarios[i][1]}')
+        print(f'Número de faltas:      {funcionarios[i][2]}')
+        print(f'Desconto das faltas:   {funcionarios[i][3]}')
     print('')
     
     frase = 'MAIOR NÚMERO DE FALTAS NOVAMENTE'
@@ -231,7 +229,7 @@ def voltar(frase, func):
     elif resp == 2:
         menu()
 
-funcionarios = {1: ['João', 101, 0, 0, 1590.00, 0, 1590.00], 2: ['Jorge', 101, 1, 50, 1540.00, 0, 1540.00]}
+funcionarios = {1: ['João', 101, 0, 0, 1590.00, 0, 1590.00], 2: ['Jorge', 101, 1, 50, 1540.00, 0, 1540.00], 3: ['Fábio', 101, 0, 0, 1590.00, 0, 1590.00]}
 print('Bem vindo ao sistema de folha de pagamento da Marketing é Tudo!')
 menu() 
 print('Obrigado por acessar o programa!')
