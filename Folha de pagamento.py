@@ -54,7 +54,7 @@ def inserir():
     else:
         sal_fixo = float(input('Digite o salário do funcionário: '))
         while sal_fixo < 2150 or sal_fixo > 6950:
-            print('Valor inválido. Tente novamente.')
+            print('Valor inválido. Valor mínimo: 2150. Valor máximo: 6950. Tente novamente.')
             sal_fixo = float(input('Digite o salário do funcionário: '))
     
     desc_faltas = ((sal_fixo/30)* num_falta)
@@ -81,7 +81,7 @@ def inserir():
     print('FUNCIONÁRIO INSERIDO.')
     print('')
 
-    frase = 'INSERIR FUNCIONÁRIO NOVAMENTE'
+    frase = 'INSERIR OUTRO FUNCIONÁRIO'
     func = 1
     voltar(frase, func)
 
@@ -113,7 +113,7 @@ def remover():
         remover()
     print('')
     
-    frase = 'REMOVER FUNCIONÁRIO NOVAMENTE'
+    frase = 'REMOVER OUTRO FUNCIONÁRIO'
     func = 2
     voltar(frase, func)
 
