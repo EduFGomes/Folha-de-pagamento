@@ -54,7 +54,7 @@ def inserir():
     else:
         sal_fixo = float(input('Digite o salário do funcionário: '))
         while sal_fixo < 2150 or sal_fixo > 6950:
-            print('Valor inválido. Valor mínimo: 2150. Valor máximo: 6950. Tente novamente.')
+            print('Valor inválido. Tente novamente.')
             sal_fixo = float(input('Digite o salário do funcionário: '))
     
     desc_faltas = ((sal_fixo/30)* num_falta)
@@ -81,7 +81,7 @@ def inserir():
     print('FUNCIONÁRIO INSERIDO.')
     print('')
 
-    frase = 'INSERIR OUTRO FUNCIONÁRIO'
+    frase = 'INSERIR FUNCIONÁRIO NOVAMENTE'
     func = 1
     voltar(frase, func)
 
@@ -113,7 +113,7 @@ def remover():
         remover()
     print('')
     
-    frase = 'REMOVER OUTRO FUNCIONÁRIO'
+    frase = 'REMOVER FUNCIONÁRIO NOVAMENTE'
     func = 2
     voltar(frase, func)
 
@@ -163,24 +163,25 @@ def relatorio():
     voltar(frase, func)
 
 def maiorsal():
-    listaMS = []
+    listaMS = {}
     maior_s = 0
     for i in funcionarios.keys():
-        if funcionarios[i][6] > maior_s:
-            listaMS = []
-            listaMS.append(i)
-            maior_s = funcionarios[i][6]
-        elif funcionarios[i][6] == maior_s:
-            listaMS.append(i)
+        aux = funcionarios[i]
+        if aux[6] > maior_s:
+            listaMS = {}
+            listaMS[i] = [aux[0], aux[1], aux[4], aux[5], aux[6]]
+            maior_s = aux[6]
+        elif aux[6] == maior_s:
+            listaMS[i] = [aux[0],aux[1], aux[4], aux[5], aux[6]]
     print('MAIOR SALÁRIO:')
-    for i in listaMS:
+    for matricula, lista in listaMS.items():
         print(f'-'*50)
-        print(f'Número de matrícula:   {i}')
-        print(f'Nome do funcionário:   {funcionarios[i][0]}')
-        print(f'Código do funcionário: {funcionarios[i][1]}')
-        print(f'Salário bruto:         {funcionarios[i][4]}')
-        print(f'Imposto:               {funcionarios[i][5]}%')
-        print(f'Salário líquido:       {funcionarios[i][6]}')
+        print(f'Número de matrícula:   {matricula}')
+        print(f'Nome do funcionário:   {lista[0]}')
+        print(f'Código do funcionário: {lista[1]}')
+        print(f'Salário bruto:         {lista[2]}')
+        print(f'Imposto:               {lista[3]}%')
+        print(f'Salário líquido:       {lista[4]}')
     print('')
 
     frase = 'MAIOR SALÁRIO NOVAMENTE'
@@ -188,23 +189,24 @@ def maiorsal():
     voltar(frase, func)
 
 def maisfaltas():
-    listaMF = []
+    listaMF = {}
     mais_f = 0
     for i in funcionarios.keys():
-        if funcionarios[i][2] > mais_f:
-            listaMF = []
-            listaMF.append(i)
+        aux = funcionarios[i]
+        if aux[2] > mais_f:
+            listaMF = {}
+            listaMF[i] = [aux[0], aux[1], aux[2], aux[3]]
             mais_f = funcionarios[i][2]
-        elif funcionarios[i][2] == mais_f:
-            listaMF.append(i)
+        elif aux[2] == mais_f:
+            listaMF[i] = [aux[0], aux[1], aux[2], aux[3]]
     print('MAIOR NÚMERO DE FALTAS:')
-    for i in listaMF:
+    for matricula, lista in listaMF.items():
         print('-'*50)
-        print(f'Número de matrícula:   {i}')
-        print(f'Nome do funcionário:   {funcionarios[i][0]}')
-        print(f'Código do funcionário: {funcionarios[i][1]}')
-        print(f'Número de faltas:      {funcionarios[i][2]}')
-        print(f'Desconto das faltas:   {funcionarios[i][3]}')
+        print(f'Número de matrícula:   {matricula}')
+        print(f'Nome do funcionário:   {lista[0]}')
+        print(f'Código do funcionário: {lista[1]}')
+        print(f'Número de faltas:      {lista[2]}')
+        print(f'Desconto das faltas:   {lista[3]}')
     print('')
     
     frase = 'MAIOR NÚMERO DE FALTAS NOVAMENTE'
@@ -226,10 +228,14 @@ def voltar(frase, func):
             folha_de_pag()
         elif func == 4:
             relatorio()
+        elif func == 5:
+            maiorsal()
+        elif func == 6:
+            maisfaltas()
     elif resp == 2:
         menu()
 
-funcionarios = {1: ['João', 101, 0, 0, 1590.00, 0, 1590.00], 2: ['Jorge', 101, 1, 50, 1540.00, 0, 1540.00], 3: ['Fábio', 101, 0, 0, 1590.00, 0, 1590.00]}
+funcionarios = {1: ['João', 101, 0, 0, 1590.00, 0, 1590.00], 2: ['Jorge', 101, 1, 50, 1540.00, 0, 1540.00]}
 print('Bem vindo ao sistema de folha de pagamento da Marketing é Tudo!')
 menu() 
 print('Obrigado por acessar o programa!')
