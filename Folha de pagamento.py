@@ -50,7 +50,7 @@ def inserir():
     if cod_func == 101:
         sal_fixo = 1500
         vol_vendas = float(input('Digite o valor do volume de vendas do funcionário: '))
-        sal_bruto = sal_fixo + (vol_vendas * 0.09)
+        sal_fixo = sal_fixo + (vol_vendas * 0.09)
     else:
         sal_fixo = float(input('Digite o salário do funcionário: '))
         while sal_fixo < 2150 or sal_fixo > 6950:
@@ -59,7 +59,7 @@ def inserir():
     
     desc_faltas = ((sal_fixo/30)* num_falta)
     
-    sal_bruto = sal_bruto - desc_faltas
+    sal_bruto = sal_fixo - desc_faltas
     
     if sal_bruto <= 2259.20:
         sal_liq = sal_bruto
@@ -99,12 +99,12 @@ def remover():
         print(f'FUNCIONÁRIO SELECIONADO: {funcionarios[matricula][0]}')
         print('')
         nome = input('Para confirmar, digite o primeiro nome do funcionário: ')
-        if nome.title() == funcionarios[matricula][0]:
+        if nome.title() in funcionarios[matricula][0]:
             func_remov = funcionarios.pop(matricula)
             print('')
             print(f'O FUNCIONÁRIO {func_remov[0].upper()} FOI REMOVIDO.')
         else:
-            print('')    
+            print('')
             print('O nome do funcionário foi digitado incorretamente.')
             remover()
     else:
@@ -235,7 +235,7 @@ def voltar(frase, func):
     elif resp == 2:
         menu()
 
-funcionarios = {1: ['João', 101, 0, 0, 1590.00, 0, 1590.00], 2: ['Jorge', 101, 1, 50, 1540.00, 0, 1540.00]}
+funcionarios = {1: ['João Pedro', 101, 0, 0, 1590.00, 0, 1590.00], 2: ['Jorge', 101, 1, 50, 1540.00, 0, 1540.00]}
 print('Bem vindo ao sistema de folha de pagamento da Marketing é Tudo!')
 menu() 
 print('Obrigado por acessar o programa!')
