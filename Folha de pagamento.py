@@ -32,6 +32,9 @@ def inserir():
     print('-' * 50)
     
     matricula = int(input('Digite o número de matrícula: '))
+    while matricula < 0:
+        print('Matrícula não pode ser negativa. Insira outro número.')
+        matricula = int(input('Digite o número de matrícula: '))
     while matricula in funcionarios.keys():
         print('Matrícula já existente. Insira outro número.')
         matricula = int(input('Digite o número de matrícula: '))
@@ -238,4 +241,5 @@ def voltar(frase, func):
 funcionarios = {1: ['João Pedro', 101, 0, 0, 1590.00, 0, 1590.00], 2: ['Jorge', 101, 1, 50, 1540.00, 0, 1540.00]}
 print('Bem vindo ao sistema de folha de pagamento da Marketing é Tudo!')
 menu() 
+print('')
 print('Obrigado por acessar o programa!')
